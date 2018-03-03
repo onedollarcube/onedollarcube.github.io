@@ -1,0 +1,88 @@
+* {
+	font-family: Verdana;
+}
+
+#image_container{
+	margin-top: 30px;
+}
+
+#pll_image {
+	width: 250px;
+}
+
+#score {
+	padding: 10px;
+}
+
+p {
+	display: inline;
+	font-size: 150%;
+}
+
+#p_win {
+	color: green;
+}
+#p_lose {
+	color: red;
+}
+
+#buttons {
+	padding: 10px;
+
+}
+
+.answer_btn {
+	padding: 10px;
+	margin: 4px;
+	border-radius: 5px;
+	color: white;
+	width: 40px;
+	height: 40px;
+}
+
+#gr1 {
+	background: linear-gradient(to bottom, #FFFFFF, #CCCCCC);
+	border: 1px solid #CCCCCC;
+	color: #626262;
+}
+
+#gr2 {
+	background: linear-gradient(to bottom, #2F34FF, #0000CC);
+	border: 1px solid #0000CC;
+}
+
+#gr3{
+	background: linear-gradient(to bottom, #6CE62A, #26B200);
+	border: 1px solid #26B200;
+}
+
+#gr1:hover {
+	background: linear-gradient(to bottom, #FFFFFF, #E5E5E5);
+	border: 1px solid #CCCCCC;
+	color: #626262;
+}
+
+#gr2:hover {
+	background: linear-gradient(to bottom, #6064FF, #2F2FE5);
+	border: 1px solid #0000CC;
+}
+
+#gr3:hover{
+	background: linear-gradient(to bottom, #89E657, #4DCC2A);
+	border: 1px solid #4DCC2A;
+}
+
+#colors {
+	padding: 10px;
+}
+
+#options {
+	padding: 10px;
+	max-width: 50%;
+	margin-left: 25%;
+	border: 1px solid #F8EB67;
+    border-radius: 5px;
+    background-color: #F8F1A7;
+    align-content: center;
+    align-self: center;
+}

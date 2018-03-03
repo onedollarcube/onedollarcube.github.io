@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PLL recognition trainer</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<div id="image_container" align="center">
+		<img id="pll_image" src="images/Aa1.png" align="center">
+	</div>
+	<div id="score" align="center">
+		<p id="p_win">0</p>
+		<p>-</p>
+		<p id="p_lose">0</p>
+	</div>
+	
+	
+	<div id="buttons" align="center">
+		<button class="answer_btn" id="gr1" onclick="train('A');">A</button>
+		<button class="answer_btn" id="gr1" onclick="train('G');">G</button>
+		<button class="answer_btn" id="gr1" onclick="train('R');">R</button>
+		<button class="answer_btn" id="gr1" onclick="train('T');">T</button>
+		<button class="answer_btn" id="gr1" onclick="train('J');">J</button>
+		<button class="answer_btn" id="gr1" onclick="train('F');">F</button>
+		<br>
+		<button class="answer_btn" id="gr2" onclick="train('Y');">Y</button>
+		<button class="answer_btn" id="gr2" onclick="train('V');">V</button>
+		<button class="answer_btn" id="gr2" onclick="train('N');">N</button>
+		<button class="answer_btn" id="gr2" onclick="train('E');">E</button>
+		<br>
+		<button class="answer_btn" id="gr3" onclick="train('U');">U</button>
+		<button class="answer_btn" id="gr3" onclick="train('H');">H</button>
+		<button class="answer_btn" id="gr3" onclick="train('Z');">Z</button>
+	</div>
+	<div id="options">
+		<div id="cn_select" align="center">
+			<label><input type="radio" name="colors" id="radio_whitecolor" checked="true">Yellow Color (Желтый цвет)</label>
+			<label><input type="radio" name="colors" id="radio_colorneutral">Color neutral (Мультиколор)</label>
+		</div>
+		<div id="colors" align="center">
+			<label><input type="checkbox" id="cb_yellow" class="cb" checked="true">Yellow</label>
+			<label><input type="checkbox" id="cb_white" class="cb" checked="true">White</label>
+			<label><input type="checkbox" id="cb_red" checked="true">Red</label>
+			<label><input type="checkbox" id="cb_orange" checked="true">Orange</label>
+			<label><input type="checkbox" id="cb_green" checked="true">Green</label>
+			<label><input type="checkbox" id="cb_blue" checked="true">Blue</label>
+		</div>
+		<div id="special" align="center">
+			<label><input type="checkbox" id="cb_special1">No blocks and headlights (Без блоков и фар, сложная группа)</label>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+
+	/*  yellow - 1 - 16
+		red - 17 - 32
+		white - 33 - 48
+		orange - 49 - 64
+		green - 65 - 80
+		blue - 81 - 96
+	*/
+	var path;
+	var pll_name = ["Aa", "Ab", "E", "F", "Ga", "Gb", "Gc", 
+					"Gd", "H", "Ja", "Jb", "Na", "Nb", "Ra", 
+					"Rb", "T", "Ua", "Ub", "V", "Y", "Z"];
+
+
+	var r_cn = document.getElementById("radio_colorneutral");
+	var is_cn; //It is Color Neutral?
+	var pll_num;
+	var pll_name_num;
+	var pll_path;
+	var pll_img = document.getElementById('pll_image');
+	var right_answer;
+
+	var win_count = 0;
+	var lose_count = 0;
+	var p_win = document.getElementById("p_win");
+	var p_lose = document.getElementById("p_lose");
+
+	var cb_yellow = document.getElementById("cb_yellow");
+	var cb_white = document.getElementById("cb_white");
+	var cb_red = document.getElementById("cb_red");
+	var cb_orange = document.getElementById("cb_orange");
+	var cb_green = document.getElementById("cb_green");
+	var cb_blue = document.getElementById("cb_blue");
+
+	var cb_special1 = document.getElementById("cb_special1");
+
+	function genColor(){
+		var n = 0;
+		var colors = [0,0,0,0,0,0];
+		if (cb_yellow.checked) {
+			colors[n] = 1;
+			n++;
+		}
+		if (cb_white.checked) {
+			colors[n] = 33;
+			n++;
+		}
+		if (cb_red.checked) {
+			colors[n] = 17;
+			n++;
+		}
+		if (cb_orange.checked) {
+			colors[n] = 49;
+			n++;
+		}
+		if (cb_green.checked) {
+			colors[n] = 65;
+			n++;
+		}
+		if (cb_blue.checked) {
+			colors[n] = 81;
+			n++;
+		}
+		var pll_color = colors[Math.floor(Math.random()*n)];
+		
+		console.log("genColor " + pll_color);
+		return pll_color;
+	}
+
+	function genCase() {
+		var pll_case = Math.floor(Math.random()*15);
+		return genColor() + pll_case;
+		
+	}
+
+	function genPll(){
+		if(r_cn.checked) {
+			is_cn = true;
+		}else{
+			is_cn = false;
+		}
+
+		if(is_cn){
+			pll_num = genCase();
+		}else{
+			pll_num = Math.floor(Math.random()*16) + 1;
+		}
+
+		pll_name_num = Math.floor(Math.random()*20);
+		right_answer = pll_name[pll_name_num];
+		pll_img.src = "https://www.cubeskills.com/images/tools/pll-recognition-trainer/"+  right_answer + pll_num + ".png";
+
+		console.log(right_answer + pll_num);
+	}
+
+	function genPllSpecial1(){ 
+	//E all; F 1,4,5,8,9,12,13,16; Ga 4,8,12,16; Gc 1,5,9,13; Ra 4,8,12,16; Rb 4,8,12,16; V 4,8,12,16; Y 3,7,11,15; 
+		var plls = ["E", "F", "Ga", "Gc", "Ra", "Rb", "V", "Y"]; // 0 - 7
+		var F_case = [1,4,5,8,9,12,13,16]; // 0 - 7
+		var Ga_case = [4,8,12,16]; // 0 - 3
+		var Gc_case = [1,5,9,13]; // 0 - 3
+		var R_case = [4,8,12,16]; // 0 - 3
+		var V_case = [4,8,12,16]; // 0 - 3
+		var Y_case = [3,7,11,15]; // 0 - 3
+
+		var pll_special1_case;
+		var pll_special1_num = Math.floor(Math.random()*7);
+		switch(pll_special1_num){
+			case 0: pll_special1_case = Math.floor(Math.random()*15) + 1; // E
+			break;
+			case 1: pll_special1_case = F_case[Math.floor(Math.random()*7)]; // F
+			break;
+			case 2: pll_special1_case = Ga_case[Math.floor(Math.random()*3)]; // Ga
+			break;
+			case 3: pll_special1_case = Gc_case[Math.floor(Math.random()*3)]; // Gc
+			break;
+			case 4: pll_special1_case = R_case[Math.floor(Math.random()*3)]; // Ra
+			break;
+			case 5: pll_special1_case = R_case[Math.floor(Math.random()*3)]; // Rb
+			break;
+			case 6: pll_special1_case = V_case[Math.floor(Math.random()*3)]; // V
+			break;
+			case 7: pll_special1_case = Y_case[Math.floor(Math.random()*3)]; // Y
+			break;
+		}
+
+		if(r_cn.checked) {
+			is_cn = true;
+		}else{
+			is_cn = false;
+		}
+
+		if(is_cn){
+			pll_special1_case += genColor() - 1;
+		}
+
+		right_answer = plls[pll_special1_num];
+		pll_img.src = "https://www.cubeskills.com/images/tools/pll-recognition-trainer/"+  right_answer + pll_special1_case + ".png";
+
+		console.log(right_answer + pll_special1_case);
+
+	}
+
+	genPll();
+	function train(answer) {
+		if (answer == right_answer[0]) {
+			win_count++;
+		} else {
+			lose_count++;
+			alert("Неправильно, это " + right_answer);
+		}
+		p_win.innerHTML = win_count;
+		p_lose.innerHTML = lose_count;
+		if (cb_special1.checked) {
+			genPllSpecial1();
+		} else {
+			genPll();
+		}
+	}
+
+	
+</script>
+</html>
