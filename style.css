@@ -4,14 +4,19 @@
 
 #image_container{
 	margin-top: 30px;
+	margin-left: 30px;
+	float: left;
+	padding: 10px;
 }
 
 #pll_image {
-	width: 250px;
+	width: 400px;
 }
 
 #score {
 	padding: 10px;
+	background-color: #EDEFF8;
+	border-radius: 5px;
 }
 
 p {
@@ -20,56 +25,115 @@ p {
 }
 
 #p_win {
-	color: green;
+	color: #08D092;
 }
 #p_lose {
-	color: red;
-}
-
-#buttons {
-	padding: 10px;
-
+	color: #F65121;
 }
 
 .answer_btn {
 	padding: 10px;
-	margin: 4px;
+	margin: 3px;
 	border-radius: 5px;
 	color: white;
 	width: 40px;
 	height: 40px;
 }
 
+#cn_select {
+	padding-bottom: 15px;
+}
+
 #gr1 {
-	background: linear-gradient(to bottom, #FFFFFF, #CCCCCC);
-	border: 1px solid #CCCCCC;
-	color: #626262;
+	background-color: white;
+	border: none;
+	color: black;
 }
 
 #gr2 {
-	background: linear-gradient(to bottom, #2F34FF, #0000CC);
-	border: 1px solid #0000CC;
+	background-color: #F65121;
+	border: none;
+	color: white;
 }
 
 #gr3{
-	background: linear-gradient(to bottom, #6CE62A, #26B200);
-	border: 1px solid #26B200;
+	background-color: #08D092;
+	border: none;
+	color: white;
+}
+
+#gr4 {
+	background-color: #6F64E9;
+	border: none;
+	color: white;
 }
 
 #gr1:hover {
-	background: linear-gradient(to bottom, #FFFFFF, #E5E5E5);
-	border: 1px solid #CCCCCC;
-	color: #626262;
+	background-color: #847AEC;
+	border: none;
+	transition: 0.2s;
+	color: white;
 }
 
 #gr2:hover {
-	background: linear-gradient(to bottom, #6064FF, #2F2FE5);
-	border: 1px solid #0000CC;
+	background-color: white;
+	border: none;
+	transition: 0.2s;
+	color: black;
 }
 
 #gr3:hover{
-	background: linear-gradient(to bottom, #89E657, #4DCC2A);
-	border: 1px solid #4DCC2A;
+	background-color: white;
+	border: none;
+	transition: 0.2s;
+	color: black;
+}
+
+#gr4:hover {
+	background-color: white;
+	border: none;
+	transition: 0.2s;
+	color: black;
+}
+
+#timer_btn {
+	padding: 10px;
+	margin: 3px;
+	border-radius: 5px;
+	color: white;
+	width: 100px;
+	height: 40px;
+	background-color: #08D092;
+	border: none;
+	color: white;
+}
+
+.info {
+	padding: 25px;
+}
+
+#timer {
+	float: left;
+}
+#answers {
+	float: center;
+	padding: 10px;
+}
+#pb {
+	float: right;
+}
+
+#pb_cn {
+	float: right;
+}
+
+.quiz_btn {
+	padding: 10px;
+}
+
+#buttons {
+	padding: 10px;
+
 }
 
 #colors {
@@ -78,11 +142,145 @@ p {
 
 #options {
 	padding: 10px;
-	max-width: 50%;
-	margin-left: 25%;
-	border: 1px solid #F8EB67;
-    border-radius: 5px;
-    background-color: #F8F1A7;
-    align-content: center;
-    align-self: center;
+	color: #50667B;
+}
+
+label {
+	display: inline-block;
+}
+
+.right_panel {
+	float: right;
+	width: 700px;
+	background-color: #EDEFF8;
+	border-radius: 5px;
+	margin-right: 120px;
+	margin-top: 40px;
+}
+
+#y {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: yellow;
+	display: inline-block;
+}
+#w {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: white;
+	display: inline-block;
+}
+#r {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: red;
+	display: inline-block;
+}
+#o {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: orange;
+	display: inline-block;
+}
+#g {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: lime;
+	display: inline-block;
+}
+#b {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: blue;
+	display: inline-block;
+}
+
+#cn {
+	width: 5px;
+	border-radius: 2px;
+	display: inline-block;
+}
+
+#cn1 {
+	width: 9px;
+	height: 9px;
+	border-radius: 2px;
+	background-color: yellow;
+	margin: 1px;
+}
+#cn2 {
+	width: 9px;
+	height: 9px;
+	border-radius: 2px;
+	background-color: red;
+	margin: 1px;
+}
+
+#cn3 {
+	width: 9px;
+	height: 9px;
+	border-radius: 2px;
+	background-color: lime;
+	margin: 1px;
+}
+
+#cn4 {
+	width: 9px;
+	height: 9px;
+	border-radius: 2px;
+	background-color: blue;
+	margin: 1px;
+}
+
+
+.extra_panel {
+	float: right;
+	width: 700px;
+	background-color: #EDEFF8;
+	border-radius: 5px;
+	margin-right: 120px;
+	margin-top: 10px;
+}
+
+#message {
+	color: red;
+	float: right;
+	width: 700px;
+	border-radius: 5px;
+	margin-right: 120px;
+	margin-top: 10px;
+}
+
+#wrong_cases {
+	display: inline;
+}
+
+#wrong_cases img {
+	padding-left: 100px;
+	width: 200px;
+}
+
+#wrong_cases div {
+	float: right;
+	padding: 30px;
+	padding-bottom: 40px;
+	margin: 10px;
+	width: 10px;
+	height: 10px;
+	background-color: white;
+	border-radius: 3px;
+	color: #50667B;
+}
+
+#wrong_cases hr {
+	background-color: white;
+	color: white;
+	border: none;
+	height: 2px;
 }
