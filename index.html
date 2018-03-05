@@ -4,82 +4,52 @@
 	<title>PLL recognition trainer</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body onload="init();">
+<body>
 
-	<div id="image_container">
-		<img id="pll_image" src="http://cube.crider.co.uk/visualcube.php?fmt=svg&size=200" align="center">
-		<div id="score" align="center">
-			<p id="p_win">0</p>
-			<p>-</p>
-			<p id="p_lose">0</p>
-		</div>
+	<div id="image_container" align="center">
+		<img id="pll_image" src="https://www.cubeskills.com/images/tools/pll-recognition-trainer/Aa1.png" align="center">
 	</div>
-
-<div class="right_panel">
+	<div id="score" align="center">
+		<p id="p_win">0</p>
+		<p>-</p>
+		<p id="p_lose">0</p>
+	</div>
+	
+	
 	<div id="buttons" align="center">
-		<button class="answer_btn" id="gr1" onclick="train('T');">T</button>
-		<button class="answer_btn" id="gr1" onclick="train('F');">F</button>
-		<button class="answer_btn" id="gr1" onclick="train('J');">J</button>
+		<button class="answer_btn" id="gr1" onclick="train('A');">A</button>
+		<button class="answer_btn" id="gr1" onclick="train('G');">G</button>
 		<button class="answer_btn" id="gr1" onclick="train('R');">R</button>
-		<button class="answer_btn" id="gr1" onclick="train('V');">V</button>
-		<button class="answer_btn" id="gr1" onclick="train('Y');">Y</button>
-		<button class="answer_btn" id="gr1" onclick="train('N');">N</button>
+		<button class="answer_btn" id="gr1" onclick="train('T');">T</button>
+		<button class="answer_btn" id="gr1" onclick="train('J');">J</button>
+		<button class="answer_btn" id="gr1" onclick="train('F');">F</button>
+		<br>
+		<button class="answer_btn" id="gr2" onclick="train('Y');">Y</button>
+		<button class="answer_btn" id="gr2" onclick="train('V');">V</button>
+		<button class="answer_btn" id="gr2" onclick="train('N');">N</button>
+		<button class="answer_btn" id="gr2" onclick="train('E');">E</button>
 		<br>
 		<button class="answer_btn" id="gr3" onclick="train('U');">U</button>
 		<button class="answer_btn" id="gr3" onclick="train('H');">H</button>
 		<button class="answer_btn" id="gr3" onclick="train('Z');">Z</button>
-		<br>
-		<button class="answer_btn" id="gr2" onclick="train('A');">A</button>
-		<button class="answer_btn" id="gr2" onclick="train('E');">E</button>
-		<br>
-		<button class="answer_btn" id="gr4" onclick="train('G');">G</button>
 	</div>
 	<div id="options">
-		<div id="cn_select" align="center" onclick="init();">
-			<label><input type="radio" name="colors" id="radio_whitecolor" checked="true"><div id="y"></div></label>
-			<label><input type="radio" name="colors" id="radio_colorneutral">
-				<div id="cn">
-					<div id="cn1"></div>
-					<div id="cn2"></div>
-				</div>
-				<div id="cn">
-					<div id="cn3"></div>
-					<div id="cn4"></div>
-				</div>
-
-
-
-			</label>
+		<div id="cn_select" align="center">
+			<label><input type="radio" name="colors" id="radio_whitecolor" checked="true">Yellow Color (Желтый цвет)</label>
+			<label><input type="radio" name="colors" id="radio_colorneutral">Color neutral (Мультиколор)</label>
 		</div>
 		<div id="colors" align="center">
-			<label><input type="checkbox" id="cb_yellow" class="cb" checked="true"><div id="y"></div></label>
-			<label><input type="checkbox" id="cb_white" class="cb" checked="true"><div id="w"></div></label>
-			<label><input type="checkbox" id="cb_red" class="cb" checked="true"><div id="r"></div></label>
-			<label><input type="checkbox" id="cb_orange" class="cb" checked="true"><div id="o"></div></label>
-			<label><input type="checkbox" id="cb_green" class="cb" checked="true"><div id="g"></div></label>
-			<label><input type="checkbox" id="cb_blue" class="cb" checked="true"><div id="b"></div></label>
+			<label><input type="checkbox" id="cb_yellow" class="cb" checked="true">Yellow</label>
+			<label><input type="checkbox" id="cb_white" class="cb" checked="true">White</label>
+			<label><input type="checkbox" id="cb_red" checked="true">Red</label>
+			<label><input type="checkbox" id="cb_orange" checked="true">Orange</label>
+			<label><input type="checkbox" id="cb_green" checked="true">Green</label>
+			<label><input type="checkbox" id="cb_blue" checked="true">Blue</label>
 		</div>
 		<div id="special" align="center">
-			<label><input type="checkbox" id="cb_special1">No blocks and headlights (Без блоков и фар)</label>
+			<label><input type="checkbox" id="cb_special1">No blocks and headlights (Без блоков и фар, сложная группа)</label>
 		</div>
-		<div class="quiz_btn" align="center">
-			<button  id="timer_btn" onclick="timerStart();">Start Quiz</button>
-		</div>
-		<div class="info" align="center">
-			<div id="timer">Timer: 0.00</div>
-			<div id="pb">PB: x.xx</div>
-			<br>
-			<div id="pb_cn">PB(CN): x.xx</div>
-		</div>
-		<div id="answers" align="center">0/0</div>
-
 	</div>
-</div>
-
-<div id="message" align="center"></div>
-<div class="extra_panel" align="center">
-	<div id="wrong_cases"></div>
-</div>
 </body>
 <script type="text/javascript">
 
@@ -90,17 +60,9 @@
 		green - 65 - 80
 		blue - 81 - 96
 	*/
-	var quiz_start = false;
-	var is_timer_start = false;
-	var pb = Infinity;
-	var pb_cn = Infinity;
-	var answer_num = 0;
-	var answer_goal = 10;
-
-	var path = "images/";
-	var cubeskills_url = "https://www.cubeskills.com/images/tools/pll-recognition-trainer/";
-	var pll_name = ["Aa", "Ab", "E", "F", "Ga", "Gb", "Gc",
-					"Gd", "H", "Ja", "Jb", "Na", "Nb", "Ra",
+	var path;
+	var pll_name = ["Aa", "Ab", "E", "F", "Ga", "Gb", "Gc", 
+					"Gd", "H", "Ja", "Jb", "Na", "Nb", "Ra", 
 					"Rb", "T", "Ua", "Ub", "V", "Y", "Z"];
 
 
@@ -125,80 +87,6 @@
 	var cb_blue = document.getElementById("cb_blue");
 
 	var cb_special1 = document.getElementById("cb_special1");
-
-	var cb = document.getElementsByClassName("cb");
-
-	var wrong_cases = [''];
-	var wrong_cases_counter = 0;
-
-	function init(){
-		if (document.getElementById("radio_whitecolor").checked) {
-				document.getElementById("colors").style.display = "none";
-		}
-		if  (r_cn.checked) {
-				document.getElementById("colors").style.display = "block";
-		}
-		document.getElementById("answers").innerHTML = answer_num + "/" + answer_goal;
-	}
-	function timerStart(){
-		if (is_timer_start) {return;}
-		document.getElementById("wrong_cases").innerHTML = ""; //Очистка поля с неправильными кейсами
-		genPll();
-		sec = 0;
-		timer = setInterval(tick, 10); //Старт таймера
-		quiz_start = true;
-		answer_num = 0;
-		console.log("Quiz start");
-		is_timer_start = true;
-		document.getElementById("radio_whitecolor").disabled = true;
-		document.getElementById("radio_colorneutral").disabled = true;
-		document.getElementById("cb_special1").disabled = true;
-		document.getElementById("cb_yellow").disabled = true;
-		document.getElementById("cb_white").disabled = true;
-		document.getElementById("cb_red").disabled = true;
-		document.getElementById("cb_orange").disabled = true;
-		document.getElementById("cb_green").disabled = true;
-		document.getElementById("cb_blue").disabled = true;
-	}
-	function timerStop(){
-		clearInterval(timer);
-		quiz_start = false;
-		is_timer_start = false;
-		if (lose_count == 0) {
-			if (r_cn.checked) {
-				if (sec < pb_cn) pb_cn = sec;
-				document.getElementById("pb_cn").innerHTML = "PB(CN): " + pb_cn/100;
-			} else {
-				if (sec < pb) pb = sec;
-				document.getElementById("pb").innerHTML = "PB: " + pb/100;
-			}
-		}
-		console.log("Quiz stop");
-		if (wrong_cases_counter > 0) displayWrongCases();
-		wrong_cases_counter = 0;
-		win_count = 0;
-		lose_count = 0;
-		document.getElementById("radio_whitecolor").disabled = false;
-		document.getElementById("radio_colorneutral").disabled = false;
-		document.getElementById("cb_special1").disabled = false;
-		document.getElementById("cb_yellow").disabled = false;
-		document.getElementById("cb_white").disabled = false;
-		document.getElementById("cb_red").disabled = false;
-		document.getElementById("cb_orange").disabled = false;
-		document.getElementById("cb_green").disabled = false;
-		document.getElementById("cb_blue").disabled = false;
-
-		console.log("Clearing wrong cases array")
-		for (i = wrong_cases.length; i > 1; i--)
-		wrong_cases.pop() ;
-	}
-
-	function tick(){
-		document.getElementById("answers").innerHTML = answer_num + "/" + answer_goal;
-	  sec++;
-	  document.getElementById("timer").innerHTML = "Timer: " + sec/100;
-		if (answer_num == answer_goal) timerStop();
-	  }
 
 	function genColor(){
 		var n = 0;
@@ -228,7 +116,7 @@
 			n++;
 		}
 		var pll_color = colors[Math.floor(Math.random()*n)];
-
+		
 		console.log("genColor " + pll_color);
 		return pll_color;
 	}
@@ -236,7 +124,7 @@
 	function genCase() {
 		var pll_case = Math.floor(Math.random()*15);
 		return genColor() + pll_case;
-
+		
 	}
 
 	function genPll(){
@@ -254,14 +142,13 @@
 
 		pll_name_num = Math.floor(Math.random()*20);
 		right_answer = pll_name[pll_name_num];
-		right_answer_full = pll_name[pll_name_num] + pll_num + ".png";
-		pll_img.src = path +  right_answer + pll_num + ".png";
+		pll_img.src = "https://www.cubeskills.com/images/tools/pll-recognition-trainer/"+  right_answer + pll_num + ".png";
 
 		console.log(right_answer + pll_num);
 	}
 
-	function genPllSpecial1(){
-	//E all; F 1,4,5,8,9,12,13,16; Ga 4,8,12,16; Gc 1,5,9,13; Ra 4,8,12,16; Rb 4,8,12,16; V 4,8,12,16; Y 3,7,11,15;
+	function genPllSpecial1(){ 
+	//E all; F 1,4,5,8,9,12,13,16; Ga 4,8,12,16; Gc 1,5,9,13; Ra 4,8,12,16; Rb 4,8,12,16; V 4,8,12,16; Y 3,7,11,15; 
 		var plls = ["E", "F", "Ga", "Gc", "Ra", "Rb", "V", "Y"]; // 0 - 7
 		var F_case = [1,4,5,8,9,12,13,16]; // 0 - 7
 		var Ga_case = [4,8,12,16]; // 0 - 3
@@ -302,46 +189,29 @@
 		}
 
 		right_answer = plls[pll_special1_num];
-		right_answer_full = plls[pll_special1_num] + pll_special1_case + ".png";
-		pll_img.src = path +  right_answer + pll_special1_case + ".png";
+		pll_img.src = "https://www.cubeskills.com/images/tools/pll-recognition-trainer/"+  right_answer + pll_special1_case + ".png";
 
 		console.log(right_answer + pll_special1_case);
 
 	}
 
+	genPll();
 	function train(answer) {
-		if (!quiz_start) {return;}
 		if (answer == right_answer[0]) {
 			win_count++;
-			answer_num++;
-			document.getElementById("message").innerHTML = ("");
 		} else {
 			lose_count++;
-			answer_num++;
-			wrong_cases_counter++;
-			wrong_cases.push(right_answer_full) ;
-			document.getElementById("message").innerHTML = ("Неправильно, это " + right_answer[0]);
+			alert("Неправильно, это " + right_answer);
 		}
 		p_win.innerHTML = win_count;
 		p_lose.innerHTML = lose_count;
-
 		if (cb_special1.checked) {
 			genPllSpecial1();
 		} else {
 			genPll();
 		}
-
 	}
 
-	function displayWrongCases(){
-		console.log("display wrong cases");
-		document.getElementById("message").innerHTML = ("");
-		for (i = 1; i <= wrong_cases_counter; i++){
-			document.getElementById("wrong_cases").innerHTML += "<img src='" + path + wrong_cases[i] + "'>";
-			document.getElementById("wrong_cases").innerHTML +=  "<div>" + (wrong_cases[i])[0] + "</div>" + "<hr>" + "<br>";
-		}
-	}
-
-
+	
 </script>
 </html>
