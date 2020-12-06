@@ -40,6 +40,7 @@
 	var cb_blue = document.getElementById("cb_blue");
 
 	var cb_special1 = document.getElementById("cb_special1");
+	var cb_special2 = document.getElementById("cb_special2");
 
 	var cb = document.getElementsByClassName("cb");
 
@@ -227,22 +228,24 @@
 
 	function train(answer) {
 		if (!quiz_start) {return;}
-		if (answer == right_answer[0]) {
+		if (answer == right_answer[0] && !cb_special2.checked) {
 			win_count++;
 			answer_num++;
 			document.getElementById("message").innerHTML = ("");
-		} else {
+		} else if (!cb_special2.checked) {
 			lose_count++;
 			answer_num++;
 			wrong_cases_counter++;
 			wrong_cases.push(right_answer_full) ;
 			document.getElementById("message").innerHTML = ("It's " + right_answer);
 		}
+
+
 		p_win.innerHTML = win_count;
 		p_lose.innerHTML = lose_count;
 
 		if (cb_special1.checked) {
-			genPllSpecial1();
+			genPllSpecial1(); //Генерация случаев без блоков и фар
 		} else {
 			genPll();
 		}

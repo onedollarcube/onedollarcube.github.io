@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 <!-- Main CSS -->
-<link rel="stylesheet" type="text/css" href="style2.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -28,29 +28,6 @@
 		</div>
 
 		
-		<div class="col shadow-sm">
-			<div id="score" align="center">
-				<div id="p_win">0</div>
-				<div>-</div>
-				<div id="p_lose">0</div>
-			</div>
-
-			<div class="info" align="center">
-				<div id="timer">Timer: 0.00</div>
-				<div id="pb">PB: x.xx</div>
-				<br>
-				<div id="pb_cn">PB(CN): x.xx</div>
-			</div>
-			<div id="answers" align="center">0/0</div>
-		</div>
-
-		
-
-
-	</div>
-
-	<div class="row">
-
 		<div class="col shadow-sm">
 			<div class="right_panel" align="center">
 				<div id="buttons" align="center">
@@ -74,11 +51,11 @@
 
 				<p>Color Neutral</p>
 				<div class="toggle">
-					
 					<div id="cn_select" align="center" onclick="init();" class="material-toggle">
 						<input type="checkbox" name="colors" id="toggle" name="toggle" class="switch"><label for="toggle" class="">
 					</div>
 				</div>
+
 
 			<div id="options">
 
@@ -93,6 +70,9 @@
 				<div id="special" align="center">
 					<label><input type="checkbox" id="cb_special1">No blocks and headlights</label>
 				</div>
+				<div id="special2" align="center">
+					<label><input type="checkbox" id="cb_special2">Endless</label>
+				</div>
 				<div class="quiz_btn" align="center">
 					<button class="answer_btn" id="timer_btn" onclick="timerStart();">Start Quiz</button>
 				</div>
@@ -103,6 +83,30 @@
 		
 			<div id="message" align="center"></div>
 
+		</div>
+
+		
+
+
+	</div>
+
+	<div class="row">
+
+
+		<div class="col shadow-sm">
+			<div id="score" align="center">
+				<div id="p_win">0</div>
+				<div>:</div>
+				<div id="p_lose">0</div>
+			</div>
+
+			<div class="info" align="center">
+				<div id="timer">Timer: 0.00</div>
+				<div id="pb">PB: x.xx</div>
+				<br>
+				<div id="pb_cn">PB(CN): x.xx</div>
+			</div>
+			<div id="answers" align="center">0/0</div>
 		</div>
 
 	</div>
@@ -124,8 +128,9 @@
 	
 </body>
 
+
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <!-- Main Script -->
 <script src="main.js"></script>
